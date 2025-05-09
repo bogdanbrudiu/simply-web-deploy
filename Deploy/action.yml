@@ -1,14 +1,7 @@
-name: "Simply Web Deploy"
+name: "Simply Web Deploy - Deploy"
 description: "Deploy projects with Web Deploy"
 
 inputs:
-  action:
-    description: "Action fetch/deploy/fetch&deploy"
-    default: 'deploy'
-  sync-action:
-    description: "Action to run for syncronization"
-    required: false
-    default: '""'
   website-name:
     description: "IIS website name"
     required: true
@@ -49,39 +42,8 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Stop Application Pool
-      shell: pwsh
-      run: >
-        ${{ github.action_path }}/Scripts/Set-ApplicationPool.ps1
-        StopAppPool
-        ${{ inputs.website-name }}
-        ${{ inputs.server-computer-name }}
-        ${{ inputs.server-username }}
-        ${{ inputs.server-password }}
-
-    - name: Fetch Application
-      shell: pwsh
-      if: ${{ contains(inputs.action, 'fetch') }}
-      run: >
-        ${{ github.action_path }}/Scripts/Fetch-ApplicationPackage.ps1
-        ${{ inputs.source-path }}
-        ${{ inputs.target-path }}
-        ${{ inputs.website-name }}
-        ${{ inputs.server-computer-name }}
-        ${{ inputs.server-username }}
-        ${{ inputs.server-password }}
-        ${{ inputs.target-delete }}
-        ${{ inputs.skip-directory-paths }}
-        ${{ inputs.skip-files }}
-        ${{ inputs.skip-patterns }}
-        
-    - name: Sync Action
-      if: ${{ inputs.sync-action!="" }}
-      run: ${{ inputs.sync-action }}
-      
     - name: Deploy Application
       shell: pwsh
-      if: ${{ contains(inputs.action, 'deploy') }}
       run: >
         ${{ github.action_path }}/Scripts/Deploy-ApplicationPackage.ps1
         ${{ inputs.source-path }}
@@ -94,16 +56,6 @@ runs:
         ${{ inputs.skip-directory-paths }}
         ${{ inputs.skip-files }}
         ${{ inputs.skip-patterns }}
-      
-    - name: Start Application Pool
-      shell: pwsh
-      run: >
-        ${{ github.action_path }}/Scripts/Set-ApplicationPool.ps1
-        StartAppPool
-        ${{ inputs.website-name }}
-        ${{ inputs.server-computer-name }}
-        ${{ inputs.server-username }}
-        ${{ inputs.server-password }}
 
 branding:
   icon: "upload-cloud"
