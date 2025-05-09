@@ -31,12 +31,17 @@ $contentPath = Join-Path (Join-Path $directory $baseName) $source
 
 $targetPath = "$recycleApp$destination"
 
+Write-Host "------------------------------------"
+Write-Host "dest:contentPath:        $targetPath"
+Write-Host "source:contentPath:     $contentPath"
+Write-Host "------------------------------------"
+
 [System.Collections.ArrayList]$msdeployArguments = 
     "-verb:sync",
     "-allowUntrusted",
-    "-source:contentPath=$contentPath",
-    ("-dest:" + 
-      "contentPath=${targetPath}," +
+    "-dest:contentPath=$targetPath",
+    ("-source:" + 
+      "contentPath=${contentPath}," +
       "computerName=${computerNameArgument}," + 
       "username=${username}," +
       "password=${password}," +
