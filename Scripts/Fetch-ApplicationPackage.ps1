@@ -32,8 +32,8 @@ $contentPath = Join-Path (Join-Path $directory $baseName) $destination
 $targetPath = "$recycleApp$source"
 
 Write-Host "------------------------------------"
-Write-Host "dest:contentPath:        $targetPath"
-Write-Host "source:contentPath:     $contentPath"
+Write-Host "source:contentPath:        $targetPath"
+Write-Host "dest:contentPath:     $contentPath"
 Write-Host "------------------------------------"
 
 [System.Collections.ArrayList]$msdeployArguments = 
