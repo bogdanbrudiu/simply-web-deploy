@@ -4,7 +4,7 @@ description: "Deploy projects with Web Deploy"
 inputs:
   action:
     description: "Action fetch/deploy/fetch&deploy"
-    default: 'upload'
+    default: 'deploy'
   sync-action:
     description: "Action to run for syncronization"
     required: false
