@@ -45,7 +45,7 @@ runs:
     - name: Deploy Application
       shell: pwsh
       run: >
-        ${{ github.action_path }}/Scripts/Deploy-ApplicationPackage.ps1
+        ${{ github.action_path }}/../Scripts/Deploy-ApplicationPackage.ps1
         ${{ inputs.source-path }}
         ${{ inputs.target-path }}
         ${{ inputs.website-name }}

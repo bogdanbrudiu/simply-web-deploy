@@ -22,7 +22,7 @@ runs:
     - name: Stop Application Pool
       shell: pwsh
       run: >
-        ${{ github.action_path }}/Scripts/Set-ApplicationPool.ps1
+        ${{ github.action_path }}/../Scripts/Set-ApplicationPool.ps1
         StopAppPool
         ${{ inputs.website-name }}
         ${{ inputs.server-computer-name }}

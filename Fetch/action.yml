@@ -46,7 +46,7 @@ runs:
       shell: pwsh
       if: ${{ contains(inputs.action, 'fetch') }}
       run: >
-        ${{ github.action_path }}/Scripts/Fetch-ApplicationPackage.ps1
+        ${{ github.action_path }}/../Scripts/Fetch-ApplicationPackage.ps1
         ${{ inputs.source-path }}
         ${{ inputs.target-path }}
         ${{ inputs.website-name }}
