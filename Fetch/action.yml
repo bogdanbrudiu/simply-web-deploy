@@ -44,7 +44,6 @@ runs:
   steps:
     - name: Fetch Application
       shell: pwsh
-      if: ${{ contains(inputs.action, 'fetch') }}
       run: >
         ${{ github.action_path }}/../Scripts/Fetch-ApplicationPackage.ps1
         ${{ inputs.source-path }}
