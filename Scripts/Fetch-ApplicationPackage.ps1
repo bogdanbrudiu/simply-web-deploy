@@ -27,9 +27,9 @@ $computerNameArgument = "$computerName/MsDeploy.axd?site=$recycleApp"
 
 $directory = Split-Path -Path (Get-Location) -Parent
 $baseName = (Get-Item $directory).BaseName
-$contentPath = Join-Path (Join-Path $directory $baseName) $source
+$contentPath = Join-Path (Join-Path $directory $baseName) $destination
 
-$targetPath = "$recycleApp$destination"
+$targetPath = "$recycleApp$source"
 
 Write-Host "------------------------------------"
 Write-Host "dest:contentPath:        $targetPath"
@@ -39,9 +39,9 @@ Write-Host "------------------------------------"
 [System.Collections.ArrayList]$msdeployArguments = 
     "-verb:sync",
     "-allowUntrusted",
-    "-dest:contentPath=$targetPath",
+    "-dest:contentPath=$contentPath",
     ("-source:" + 
-      "contentPath=${contentPath}," +
+      "contentPath=${targetPath}," +
       "computerName=${computerNameArgument}," + 
       "username=${username}," +
       "password=${password}," +
